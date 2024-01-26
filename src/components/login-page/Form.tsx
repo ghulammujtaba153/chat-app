@@ -9,7 +9,7 @@ const Form = () => {
     const router = useRouter()
   
     return (
-    <form onSubmit={(e)=> handleSubmit(e, router)} className='flex flex-col gap-5'>
+    <form onSubmit={(e)=> handleSubmit(e, router, avatarId)} className='flex flex-col gap-5'>
         <Avatar avatarId={avatarId} setAvatarId={setAvatarId}/>
         <div className='flex flex-col gap-5'>
             <label className='label'><span className='label-text text-lg'>What is your name?</span></label>
@@ -17,6 +17,7 @@ const Form = () => {
 
             <label className='label'><span className='label-text text-lg'>Put your email?</span></label>
             <input type="text" placeholder='Email' className='input input-bordered w-full' />
+            <button className='btn'>Login</button>
         </div>
     </form>
   )
