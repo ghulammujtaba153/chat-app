@@ -19,11 +19,11 @@ function MessageInp() {
     const [showEmojies, setShowEmojies] = useState<boolean>(false);
     const selectedUser = useSelectedUser((state) => state.selectedUser);
     const [cookie,setCookie]=useCookies(["user"])
-    //const socket=io("http://localhost:4000")
+    const socket=io("http://localhost:4000")
 
     function handleSubmit(e: { preventDefault: () => void; }) {
         e.preventDefault();
-        //socket.emit("private message",selectedUser.email,inpValue,cookie.user)
+        socket.emit("private message",selectedUser.email,inpValue,cookie.user)
         setInpValue("")
     }
     
@@ -32,7 +32,7 @@ function MessageInp() {
     }
     
   return (
-    <form className="mt-[30rem] relative" onSubmit={handleSubmit}>
+    <form className="mt-auto relative" onSubmit={handleSubmit}>
       <div className="w-full relative">
         <input
           type="text"

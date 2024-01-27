@@ -4,6 +4,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React, { useEffect } from 'react'
 import { shallow } from 'zustand/shallow';
 import MessageItem from './MessageItem';
+import { io } from 'socket.io-client';
 
 const MessagesList = () => {
     const sender= useUser((state)=>state.myUser);
@@ -12,6 +13,11 @@ const MessagesList = () => {
         messages:state.messages,
         setMessages:state.setMessages
     }),shallow)
+
+    const socket = io ("http://localhost:4000")
+    socket.on("refresh", ()=>{
+        fetchMessages(sender, receiver, setMessages)
+    })
 
     useEffect(()=>{
         fetchMessages(sender,receiver,setMessages)
